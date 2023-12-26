@@ -8,13 +8,11 @@ function App() {
   const [todos, setTodos] = useState([])
 
   const addTodo = (todo) => {
-    setTodos((prev) => [{id: Date.now(), ...todo}, ...prev] )
+    setTodos((prev) => [...prev, {id: Date.now(), ...todo}] )
   }
 
   const updateTodo = (id, todo) => {
-    setTodos((prev) => prev.map((prevTodo) => (prevTodo.id === id ? todo : prevTodo )))
-
-    
+    setTodos((prev) => prev.map((prevTodo) => (prevTodo.id === id ? todo : prevTodo )))    
   }
 
   const deleteTodo = (id) => {
@@ -53,7 +51,7 @@ function App() {
                         {/* Todo form goes here */} 
                         <TodoForm />
                     </div>
-                    <div className="flex flex-wrap gap-y-3">
+                    <div className="flex flex-wrap gap-y-3 max-h-[50vh] overflow-auto hide-scrollbar">
                         {/*Loop and Add TodoItem here */}
                         {todos.map((todo) => (
                           <div key={todo.id}
